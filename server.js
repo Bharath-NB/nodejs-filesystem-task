@@ -29,7 +29,7 @@ function getISTTimestamp() {
   const minutes = String(istDate.getUTCMinutes()).padStart(2, '0');
   const seconds = String(istDate.getUTCSeconds()).padStart(2, '0');
   const ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12 || 12; 
+  hours = hours % 12 || 12;
 
   return `${day}/${month}/${year}, ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
 }
@@ -64,6 +64,10 @@ app.get('/append-timestamp', (req, res) => {
 
 
 app.use('/files', express.static(directoryPath));
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the Node.js File System API! Please Use "/append-timestamp" next to url');
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
